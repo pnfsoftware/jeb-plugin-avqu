@@ -60,11 +60,13 @@ public class KasperskyQuarantineUnit extends AbstractBinaryUnit {
 
     @Override
     public boolean process() {
-        if(processed) {
+        if(isProcessed()) {
             return true;
         }
 
         try {
+            IInput input = getInput();
+
             // Kaspersky KLQ
             ByteBuffer hdr = input.getHeader();
             if(input.getCurrentSize() < 0x40 || hdr.getLong() != 0x4B4C514201000000L) {
@@ -109,8 +111,8 @@ public class KasperskyQuarantineUnit extends AbstractBinaryUnit {
             filename = Strings.safe(filename, "Quarantined Data");
 
             BytesInput input2 = new BytesInput(data);
-            addChildUnit(unitProcessor.process(filename, new SubInput(input2, offsetOriginalData, sizeOriginalData),
-                    this));
+            addChildUnit(getUnitProcessor().process(filename,
+                    new SubInput(input2, offsetOriginalData, sizeOriginalData), this));
         }
         catch(IOException e) {
             logger.catching(e);
@@ -122,7 +124,7 @@ public class KasperskyQuarantineUnit extends AbstractBinaryUnit {
             return false;
         }
 
-        processed = true;
+        setProcessed(true);
         return true;
     }
 
@@ -241,6 +243,7 @@ public class KasperskyQuarantineUnit extends AbstractBinaryUnit {
 
     @Override
     public IUnitFormatter getFormatter() {
+        IUnitFormatter formatter = super.getFormatter();
         if(UnitFormatterUtil.getPresentationByIdentifier(formatter, 1) == null) {
             final ITableDocument metadataTable = constructMetadataTableDoc();
             formatter.addPresentation(new AbstractUnitRepresentation(1, "Metadata", true) {
