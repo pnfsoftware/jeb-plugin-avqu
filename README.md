@@ -1,5 +1,8 @@
-# Quarantined file extractor for JEB2
+# Quarantined file extractor for JEB
 
 Currently support: Kaspersky KLQ files
 
-Requires: JEB 2.1
+Requires: JEB 2.3
+
+How to build:
+`$ ant -Dversion=0.1.1`

@@ -14,8 +14,8 @@ import com.pnfsoftware.jeb.core.units.IUnitProcessor;
  * <p>
  * Current support:
  * <ul>
- * <li>Kaspersky Anti-Virus KLQ - Some documentation can be found on the <a
- * href="http://www.forensicswiki.org/wiki/Kaspersky_Quarantine_File">Forensics Wiki</a></li>
+ * <li>Kaspersky Anti-Virus KLQ Parser - Some documentation can be found on the
+ * <a href="http://www.forensicswiki.org/wiki/Kaspersky_Quarantine_File">Forensics Wiki</a></li>
  * </ul>
  * 
  * @author Nicolas Falliere
@@ -31,7 +31,8 @@ public class AntivirusQuarantinePlugin extends AbstractUnitIdentifier {
     @Override
     public IPluginInformation getPluginInformation() {
         return new PluginInformation("Antivirus Quarantined File",
-                "AV quarantine file extractor. Support: for Kaspersky KLQ", "PNF Software", Version.create(0, 1));
+                "AV quarantine file extractor. Support: for Kaspersky KLQ", "PNF Software", Version.create(0, 1, 1),
+                Version.create(2, 3, 3), null);
     }
 
     @Override

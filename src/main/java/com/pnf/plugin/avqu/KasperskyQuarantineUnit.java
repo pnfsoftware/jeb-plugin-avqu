@@ -26,13 +26,12 @@ import com.pnfsoftware.jeb.core.output.table.impl.TableRow;
 import com.pnfsoftware.jeb.core.properties.IPropertyDefinitionManager;
 import com.pnfsoftware.jeb.core.units.AbstractBinaryUnit;
 import com.pnfsoftware.jeb.core.units.IUnitProcessor;
-import com.pnfsoftware.jeb.util.Formatter;
-import com.pnfsoftware.jeb.util.IO;
-import com.pnfsoftware.jeb.util.Strings;
+import com.pnfsoftware.jeb.util.format.Formatter;
+import com.pnfsoftware.jeb.util.format.Strings;
+import com.pnfsoftware.jeb.util.io.IO;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 import com.pnfsoftware.jeb.util.serialization.annotations.Ser;
-import com.pnfsoftware.jeb.util.serialization.annotations.SerConstructor;
 import com.pnfsoftware.jeb.util.serialization.annotations.SerId;
 
 /**
@@ -48,10 +47,6 @@ public class KasperskyQuarantineUnit extends AbstractBinaryUnit {
 
     @SerId(1)
     private List<KasperskyMetadataRecord> metadataRecords = new ArrayList<>();
-
-    @SerConstructor
-    KasperskyQuarantineUnit() {
-    }
 
     public KasperskyQuarantineUnit(String name, IInput input, IUnitProcessor unitProcessor, IUnitCreator parent,
             IPropertyDefinitionManager pdm) {
