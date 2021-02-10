@@ -31,8 +31,8 @@ public class AntivirusQuarantinePlugin extends AbstractUnitIdentifier {
     @Override
     public IPluginInformation getPluginInformation() {
         return new PluginInformation("Antivirus Quarantined File",
-                "AV quarantine file extractor. Support: for Kaspersky KLQ", "PNF Software", Version.create(0, 1, 1),
-                Version.create(2, 3, 3), null);
+                "AV quarantine file extractor. Support: for Kaspersky KLQ", "PNF Software",
+                Version.create(0, 1, 3));
     }
 
     @Override

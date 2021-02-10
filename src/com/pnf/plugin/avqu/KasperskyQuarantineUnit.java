@@ -14,10 +14,9 @@ import com.pnfsoftware.jeb.core.IUnitCreator;
 import com.pnfsoftware.jeb.core.input.BytesInput;
 import com.pnfsoftware.jeb.core.input.IInput;
 import com.pnfsoftware.jeb.core.input.SubInput;
-import com.pnfsoftware.jeb.core.output.AbstractUnitRepresentation;
-import com.pnfsoftware.jeb.core.output.IGenericDocument;
 import com.pnfsoftware.jeb.core.output.IUnitFormatter;
 import com.pnfsoftware.jeb.core.output.UnitFormatterUtil;
+import com.pnfsoftware.jeb.core.output.UnitRepresentationAdapter;
 import com.pnfsoftware.jeb.core.output.table.ITableDocument;
 import com.pnfsoftware.jeb.core.output.table.ITableRow;
 import com.pnfsoftware.jeb.core.output.table.impl.Cell;
@@ -241,12 +240,7 @@ public class KasperskyQuarantineUnit extends AbstractBinaryUnit {
         IUnitFormatter formatter = super.getFormatter();
         if(UnitFormatterUtil.getPresentationByIdentifier(formatter, 1) == null) {
             final ITableDocument metadataTable = constructMetadataTableDoc();
-            formatter.addPresentation(new AbstractUnitRepresentation(1, "Metadata", true) {
-                @Override
-                public IGenericDocument getDocument() {
-                    return metadataTable;
-                }
-            }, false);
+            formatter.addPresentation(new UnitRepresentationAdapter(1, "Metadata", true, metadataTable), false);
         }
 
         return formatter;
